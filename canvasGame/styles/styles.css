@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    background-color: black;
+    height: 100dvb;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#gameContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#gameBanner {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: brown;
+}
+#gameBanner *{
+    width: 300px;
+}
+#startButtons {
+    display: flex;
+
+}
+#startButtons * {
+    width: 50%;
+    margin: 5px;
+    
+}
+#scoreCounter {
+    width: 7%;
+    background-color: white;
+    border-radius: 10px;
+    margin: 3px;
+
+}
+#score {
+    width: 100%;
+    color: black;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+}
+canvas {
+    background-color: white;
+}
+button {
+    float: right;
+    font-size: 1.2em;
+}

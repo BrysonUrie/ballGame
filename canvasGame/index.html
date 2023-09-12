@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Game</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="styles/styles.css">
+        <script src="scripts/scripts.js" async></script>
+    </head>
+    <body>
+        <div id="gameBanner" style="color: aliceblue;">
+            <div id="gameTitle">
+                <h1>Ball Game</h1>
+            </div>
+            <div id="startButtons">
+                <button onclick="initGameEasy()">Easy</button>
+                <button onclick="initGameHard()">Hard</button>
+            </div>
+            <div id="scoreCounter">
+                <div id="score"></div>
+            </div>
+        </div>
+        <div id="gameContainer">
+            <canvas id="myCanvas" width="1080" height="720"></canvas>
+        </div>
+        <button onclick="endGame()">End Game </button>
+    </body>
+</html>
