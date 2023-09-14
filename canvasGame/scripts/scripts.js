@@ -192,7 +192,7 @@ class enemy {
     updatePos() {
         this.y += this.yVel;
         this.x += this.xVel;
-    }
+    } 
     checkMaxSpeed() {
         if (this.yVel > this.maxSpeed) {
             this.yVel = this.maxSpeed
@@ -270,32 +270,40 @@ let bugs = [bug1];
 let gameTimer = new Timer();
 
 
-//Create event listeners for player control and player]
-addEventListener("keydown", function (event) {
-    if (event.key == "ArrowUp") {
-        if (ball1.isTouchingGround || ball1.doubleJump === 1) {
-            ball1.yVel = 0;
-            ball1.yVel -= 19;
-            if (ball1.isTouchingGround === false) {
-                ball1.doubleJump -= 1;
-            }
+addPlayerControls();
+
+function addPlayerControls() {
+    addEventListener("keydown", function (event) {
+        if (event.key == "ArrowUp") {
+            playerJump();
+        }
+        if (event.key == "ArrowRight") {
+            ball1.isMovingRight = true;
+        }
+        if (event.key == "ArrowLeft") {
+            ball1.isMovingLeft = true;
+        }
+    });
+    addEventListener("keyup", function (event) {
+        if (event.key == "ArrowRight") {
+            ball1.isMovingRight = false;
+        }
+        if (event.key == "ArrowLeft") {
+            ball1.isMovingLeft = false;
+        }
+    });
+    
+}
+
+function playerJump() {
+    if (ball1.isTouchingGround || ball1.doubleJump === 1) {
+        ball1.yVel = 0;
+        ball1.yVel -= 19;
+        if (ball1.isTouchingGround === false) {
+            ball1.doubleJump -= 1;
         }
     }
-    if (event.key == "ArrowRight") {
-        ball1.isMovingRight = true;
-    }
-    if (event.key == "ArrowLeft") {
-        ball1.isMovingLeft = true;
-    }
-});
-addEventListener("keyup", function (event) {
-    if (event.key == "ArrowRight") {
-        ball1.isMovingRight = false;
-    }
-    if (event.key == "ArrowLeft") {
-        ball1.isMovingLeft = false;
-    }
-});
+}
 
 function initGame(enemyCount) {
     clearPreviousGame();
