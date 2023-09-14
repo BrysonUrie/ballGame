@@ -38,6 +38,13 @@ class ball {
         this.isMovingRight = false;
         this.isMovingLeft = false;
     }
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
+    }
     updatePos() {
         this.y += this.yVel;
         this.x += this.xVel;
@@ -113,7 +120,13 @@ class bug {
         this.density = 1;
         this.color = "green"
     }
-    
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
+    }
     update() {
         this.bugMovement();
         this.checkEaten();
@@ -135,6 +148,7 @@ class Timer {
         this.width = 200;
         this.height = 20;
         this.timeLeft = 10;
+        this.maxTime = 10;
         this.intervalTimer = null;
     }
     draw() {
@@ -154,7 +168,7 @@ class Timer {
     }
     resetTimer() {
         clearInterval(this.intervalTimer);
-        this.time = 10;
+        this.time = this.maxTime;
     }
     incrementTimer() {
         if (this.timeLeft > 0) {
@@ -164,12 +178,7 @@ class Timer {
 }
 
 
-function updateBug() {
-    for (let i = 0; i < bugs.length; i++) {
-        let bug = bugs[i];
-        bug.update();
-    }
-}
+
 class enemy {
     static attackIndex = 0;
     constructor () {
@@ -250,6 +259,13 @@ class enemy {
     
         return minInd
     }
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
+    }
 }
 function updateEnemy() {
     for (let i = 0; i < enemies.length; i++) {
@@ -260,6 +276,12 @@ function updateEnemy() {
         enemy.checkBoundariesElastic();
         enemy.checkMaxSpeed();
         enemy.updatePos();
+    }
+}
+function updateBug() {
+    for (let i = 0; i < bugs.length; i++) {
+        let bug = bugs[i];
+        bug.update();
     }
 }
 
@@ -320,35 +342,27 @@ function gameLoop () {
     scoreDiv.innerText =  score 
     //checkGameEnd();
 }
-
 function updateEntities() {
     ball1.update();
     updateEnemy();
     updateBug()
 }
-
-
 //List of enemies to draw
 function drawEntities() {
     for (let i = 0; i < enemies.length; i++) {
         const enemy = enemies[i];
-        drawObject(enemy)
+        enemy.draw()
     }
     for (let i = 0; i < bugs.length; i++) {
         const bug = bugs[i];
-            drawObject(bug)
+        bug.draw()
     }
-    drawObject(ball1)
+    ball1.draw()
     gameTimer.draw();
 }
 //Function to draw any object
-function drawObject(object) {
-    ctx.beginPath();
-    ctx.arc(object.x, object.y, object.radius, 0, Math.PI * 2);
-    ctx.fillStyle = object.color;
-    ctx.fill();
-    ctx.closePath();
-}
+
+
 function attackEnemy() {
     let distsBetween = []
     for (let i = 0; i < enemies.length; i++) {
